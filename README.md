@@ -11,9 +11,6 @@
  <a href="#license">Licença</a>
 </p>
 
-<p align="center">
-    <img src="./.github/login.png" alt="Exemplo de Imagem" width="400px">
-</p>
 
 ## <h2 id="started">🚀 Começando</h2>
 
