@@ -1,0 +1,29 @@
+<app-default-login-layout
+  title="Entrar na sua conta"
+  primaryBtnText="Entrar Agora"
+  secondaryBtnText="Registrar Agora"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]="!loginForm.valid"
+>
+  <form [formGroup]="loginForm">
+    <app-primary-input
+      formControlName="email"
+      inputName="email"
+      type="email"
+      label="Email"
+      placeholder="joaodasilva@gmail.com"
+    >
+      <img src="/assets/svg/email-icon.svg" />
+    </app-primary-input>
+    <app-primary-input
+      formControlName="password"
+      inputName="password"
+      type="password"
+      label="Sua Senha"
+    >
+      <img src="/assets/svg/password-icon.svg" />
+    </app-primary-input>
+    <span>Esqueceu a senha?</span>
+  </form>
+</app-default-login-layout>
