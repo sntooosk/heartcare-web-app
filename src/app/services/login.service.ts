@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import LoginResponseDTO from '../models/dto/LoginResponseDTO';
 
@@ -9,7 +10,7 @@ import LoginResponseDTO from '../models/dto/LoginResponseDTO';
 export class LoginService {
   URL: string = 'https://heartcare-backend.onrender.com/api/v1/auth';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   login(email: string, password: string) {
     return this.httpClient
@@ -18,6 +19,7 @@ export class LoginService {
         tap((value) => {
           sessionStorage.setItem('auth-token', value.token);
           sessionStorage.setItem('username', value.name);
+          this.router.navigate(['/user']); // Redireciona para a página principal após o login
         })
       );
   }
@@ -29,6 +31,7 @@ export class LoginService {
         tap((value) => {
           sessionStorage.setItem('auth-token', value.token);
           sessionStorage.setItem('username', value.name);
+          this.router.navigate(['/user']); // Redireciona para a página principal após o cadastro
         })
       );
   }

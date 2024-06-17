@@ -1,15 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { AuthGuard } from './auth-guard.service';
+import { Injectable } from '@angular/core';
 
-describe('AuthGuard', () => {
-  let service: AuthGuard;
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  constructor() {}
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthGuard);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('auth-token');
+  }
+}
