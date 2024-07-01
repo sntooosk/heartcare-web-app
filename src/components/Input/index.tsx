@@ -1,15 +1,15 @@
+import React from 'react';
 import colors from "../../utils/styles";
 
 type Props = {
-    type?: 'text' | 'password' | 'email',
-    value: string,
-    setValue: (txt: string) => void,
-    placeholder?: string,
-    leftIcon?: JSX.Element
-}
+    type?: 'text' | 'password' | 'email';
+    value: string;
+    setValue: (txt: string) => void;
+    placeholder?: string;
+    leftIcon?: JSX.Element;
+};
 
-
-function Input({ type = 'text', setValue, value, placeholder, leftIcon }: Props) {
+const Input: React.FC<Props> = ({ type = 'text', setValue, value, placeholder, leftIcon }) => {
     return (
         <div className="flex flex-row p-3 rounded-md w-full mx-3 items-center" style={{ backgroundColor: colors.BACKGROUND_CARD }}>
             {leftIcon && <div className="mr-4" style={{ color: colors.ICON }}>{leftIcon}</div>}
@@ -23,6 +23,6 @@ function Input({ type = 'text', setValue, value, placeholder, leftIcon }: Props)
             />
         </div>
     );
-}
+};
 
 export default Input;

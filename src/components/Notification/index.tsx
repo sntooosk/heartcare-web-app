@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface NotificationProps {
+type Props = {
     message: string;
     onClose: () => void;
     type: 'success' | 'error';
-}
+};
 
-const Notification: React.FC<NotificationProps> = ({ message, onClose, type }) => {
+const Notification: React.FC<Props> = ({ message, onClose, type }) => {
     const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
 
     return (

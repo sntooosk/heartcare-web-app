@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../pages/Root";
-import PostTela from "../pages/Posts";
+import PostTela from "../pages/Post";
 
 const appRoute = createBrowserRouter([
     {

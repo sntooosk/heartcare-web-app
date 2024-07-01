@@ -196,10 +196,10 @@ function PostTela() {
                             <h3 className='text-lg font-semibold'>{post.title}</h3>
                             <p className='text-gray-600'>{post.comment}</p>
                             <div className='mt-2'>
-                                <button onClick={() => handleEdit(post.id)} style={{background : colors.PRIMARY}} className='text-white px-4 py-2 rounded-md mr-2'>
+                                <button onClick={() => handleEdit(post.id)} style={{ background: colors.PRIMARY }} className='text-white px-4 py-2 rounded-md mr-2'>
                                     Editar
                                 </button>
-                                <button onClick={() => handleDelete(post.id)}  style={{background : colors.BACKGROUND , color: colors.PRIMARY}} className='px-4 py-2 rounded-md'>
+                                <button onClick={() => handleDelete(post.id)} style={{ background: colors.BACKGROUND, color: colors.PRIMARY }} className='px-4 py-2 rounded-md'>
                                     Excluir
                                 </button>
                             </div>

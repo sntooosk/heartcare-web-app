@@ -14,17 +14,13 @@ const routes = [
 ];
 
 function Root() {
-    const { signOut, authData } = useAuth();
+    const { signOut } = useAuth();
     const { width } = useWindowDimensions();
     return (
         <div className="flex flex-row" style={{ backgroundColor: colors.BACKGROUND }}>
             {
                 width > 639 ?
                     <div className="flex fixed flex-col" style={{ backgroundColor: colors.PRIMARY, width: '15rem', height: '100%', padding: '1rem' }}>
-                        <div className="flex justify-center items-center">
-                            {/* Exibir o nome do usuário */}
-                            {authData && <span className="font-bold text-white">{authData.name}</span>}
-                        </div>
                         <div className="flex flex-col h-full p-5">
                             {
                                 routes.map(r => (

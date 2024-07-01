@@ -1,7 +1,6 @@
 
 interface LoginRequestDTO {
-    email: string;
-    password: string;
-  }
-  export default LoginRequestDTO;
-  
+  email: string;
+  password: string;
+}
+export default LoginRequestDTO;

@@ -24,7 +24,7 @@ const SignIn = () => {
         setNotificationType('error');
         setShowNotification(true);
     };
-    
+
 
     const closeNotification = () => {
         setShowNotification(false);
