@@ -1,0 +1,83 @@
+@import "../../../styles/variables.scss";
+
+// Estilo para o componente <header>
+header {
+  background-color: $secondary-color;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-content {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 100px;
+      height: auto;
+    }
+  }
+
+  .drawer-toggle {
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    .material-icons {
+      font-size: 24px;
+    }
+  }
+
+  .drawer-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    /* Largura do drawer quando expandido */
+    background-color: $primary-color;
+    /* Cor de fundo do drawer */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    /* Adicione se houver rolagem vertical necessária */
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    .user-photo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 20px;
+    }
+
+    .profile {
+      margin: 20px;
+
+      .options {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          cursor: pointer;
+          padding: 10px;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

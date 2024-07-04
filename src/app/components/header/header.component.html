@@ -1,0 +1,21 @@
+<header>
+  <div class="logo-content" (click)="navigateTo('/home')">
+    <img src="./assets/svg/logo.svg" alt="logo" />
+  </div>
+
+  <div class="drawer-toggle" (click)="toggleDrawer()">
+    <i class="material-icons">menu</i>
+  </div>
+
+  <div class="drawer-content" [class.open]="drawerOpen">
+    <img [src]="photo" class="user-photo" />
+    <div class="profile">
+      <ul class="options">
+        <li><span>Olá, {{ name }}</span></li>
+        <li (click)="navigateTo('/home/posts')"><span>Publicações</span></li>
+        <li (click)="navigateTo('/home/users')"><span>Usuários</span></li>
+        <li (click)="logout()"><span>Sair</span></li>
+      </ul>
+    </div>
+  </div>
+</header>

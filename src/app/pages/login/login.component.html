@@ -1,0 +1,43 @@
+<main>
+  <section class="form-section">
+    <img src="/assets/svg/logo.svg" />
+    <h2>Administrativo</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <div class="input-wrapper">
+        <label for="email">Email</label>
+        <div class="input-content">
+          <input formControlName="email" type="email" placeholder="Digite seu E-mail" />
+          <div class="icon">
+            <img src="/assets/svg/email-icon.svg" />
+          </div>
+        </div>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="password">Senha</label>
+        <div class="input-content">
+          <input formControlName="password" type="password" placeholder="Digite sua senha" />
+          <div class="icon">
+            <img src="/assets/svg/password-icon.svg" />
+          </div>
+        </div>
+      </div>
+      
+      <div class="btn-wrapper">
+        <button class="btn-primary" type="submit" [disabled]="disablePrimaryBtn">
+          Entrar
+        </button>
+        <div class="divider">
+          <div></div>
+          <span></span>
+          <div></div>
+        </div>
+      </div>
+    </form>
+  </section>
+  
+  <section class="main-section">
+    <!-- Conteúdo da seção principal -->
+  </section>
+</main>

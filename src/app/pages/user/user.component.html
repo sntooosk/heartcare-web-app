@@ -1,0 +1,53 @@
+<form>
+    <div class="form-group">
+        <input type="text" placeholder="Nome" class="form-control" name="name" [(ngModel)]="user.name">
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="Sobrenome" class="form-control" name="lastname" [(ngModel)]="user.lastname">
+    </div>
+    <div class="form-group">
+        <input type="date" placeholder="Data de Nascimento" class="form-control" name="dob" [(ngModel)]="user.dob">
+    </div>
+    <div class="form-group">
+        <select class="form-control" name="gender" [(ngModel)]="user.gender">
+            <option value="male">Masculino</option>
+            <option value="female">Feminino</option>
+            <option value="other">Outro</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-primary" (click)="cadastrar()">
+        <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
+        <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger" (click)="remover()">
+        <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
+    </div>
+</form>
+
+<table class="table" *ngIf="tabela">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Data de Nascimento</th>
+            <th>Gênero</th>
+            <th>Foto</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.dob }}</td>
+            <td>{{ user.gender }}</td>
+            <td>
+                <div class="user-photo-container">
+                    <img [src]="user.photo" alt="Foto do usuário" class="user-photo">
+                </div>
+            </td>
+            <td><button class="btn btn-success" (click)="selecionarUser(i)">Selecionar</button></td>
+        </tr>
+    </tbody>
+</table>

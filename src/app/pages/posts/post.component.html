@@ -1,0 +1,34 @@
+<form>
+  <div class="form-group">
+    <input type="text" placeholder="Título" class="form-control" name="titulo" [(ngModel)]="post.title">
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="Comentário" class="form-control" name="comentario" [(ngModel)]="post.comment">
+  </div>
+
+  <div class="form-group">
+    <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-primary" (click)="cadastrar()">
+    <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
+    <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger" (click)="remover()">
+    <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
+  </div>
+</form>
+
+<table class="table" *ngIf="tabela">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Título</th>
+      <th>Comentário</th>
+      <th>Selecionar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of posts; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ c.title }}</td>
+      <td>{{ c.comment }}</td>
+      <td><button class="btn btn-success" (click)="selecionarPost(i)">Selecionar</button></td>
+    </tr>
+  </tbody>
+</table>

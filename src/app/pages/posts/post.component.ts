@@ -1,0 +1,98 @@
+import { Component, OnInit } from '@angular/core';
+import { Post } from '../../models/Post';
+import { PostService } from '../../services/post/post.service';
+import { ToastrService } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-post',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule
+  ],
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss']
+})
+export class PostComponent implements OnInit {
+
+  post = new Post();
+
+  btnCadastro: boolean = true;
+  tabela: boolean = true;
+
+  posts: Post[] = [];
+
+  constructor(
+    private service: PostService,
+    private toastService: ToastrService
+  ) {}
+
+  ngOnInit() {
+    this.selecionar();
+  }
+
+  selecionar(): void {
+    this.service.selecionar()
+      .subscribe(retorno => this.posts = retorno,
+      error => {
+        this.toastService.error('Erro ao obter posts. Por favor, tente novamente.');
+      });
+  }
+
+  cadastrar(): void {
+    this.service.cadastrar(this.post)
+      .subscribe(retorno => {
+        this.posts.push(retorno);
+        this.post = new Post();
+        this.toastService.success('Post cadastrado com sucesso!');
+      },
+      error => {
+        this.toastService.error('Erro ao cadastrar o post.');
+      });
+  }
+
+  selecionarPost(posicao: number): void {
+    this.post = this.posts[posicao];
+    this.btnCadastro = false;
+    this.tabela = false;
+  }
+
+  editar(): void {
+    this.service.editar(this.post.id, this.post)
+      .subscribe(retorno => {
+        let posicao = this.posts.findIndex(obj => obj.id === retorno.id);
+        this.posts[posicao] = retorno;
+        this.post = new Post();
+        this.btnCadastro = true;
+        this.tabela = true;
+        this.toastService.success('Post alterado com sucesso!');
+      },
+      error => {
+        this.toastService.error('Erro ao alterar o post.');
+      });
+  }
+
+  remover(): void {
+    this.service.remover(this.post.id)
+      .subscribe(retorno => {
+        let posicao = this.posts.findIndex(obj => obj.id === this.post.id);
+        this.posts.splice(posicao, 1);
+        this.post = new Post();
+        this.btnCadastro = true;
+        this.tabela = true;
+        this.toastService.success('Post removido com sucesso!');
+      },
+      error => {
+        this.toastService.error('Erro ao remover o post.');
+      });
+  }
+
+  cancelar(): void {
+    this.post = new Post();
+    this.btnCadastro = true;
+    this.tabela = true;
+  }
+}
