@@ -22,7 +22,6 @@ export class AuthService {
         tap((authResponse: AuthResponse) => {
           sessionStorage.setItem('user-token', authResponse.token);
           sessionStorage.setItem('user-id', authResponse.id.toString());
-          sessionStorage.setItem('user-name', authResponse.name);
         })
       );
   }
@@ -30,12 +29,6 @@ export class AuthService {
   logout() {
     sessionStorage.removeItem('user-token');
     sessionStorage.removeItem('user-id');
-    sessionStorage.removeItem('user-name');
-  }
-
-
-  getUsername(): string {
-    return sessionStorage.getItem('user-name') || '';
   }
 
   getUserId(): number {
@@ -50,8 +43,7 @@ export class AuthService {
   isLoggedIn(): boolean {
     return (
       !!sessionStorage.getItem('user-token') &&
-      !!sessionStorage.getItem('user-id') &&
-      !!sessionStorage.getItem('user-name')
+      !!sessionStorage.getItem('user-id')
     );
   }
 
