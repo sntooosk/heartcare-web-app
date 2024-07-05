@@ -1,53 +1,58 @@
-<form>
+<form class="max-w-md mx-auto mt-4 space-y-4 px-4 py-6 bg-white shadow-md rounded-lg">
     <div class="form-group">
-        <input type="text" placeholder="Nome" class="form-control" name="name" [(ngModel)]="user.name">
+        <input type="text" placeholder="Nome" class="form-control w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" name="name" [(ngModel)]="user.name">
     </div>
     <div class="form-group">
-        <input type="text" placeholder="Sobrenome" class="form-control" name="lastname" [(ngModel)]="user.lastname">
+        <input type="text" placeholder="Sobrenome" class="form-control w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" name="lastname" [(ngModel)]="user.lastname">
     </div>
     <div class="form-group">
-        <input type="date" placeholder="Data de Nascimento" class="form-control" name="dob" [(ngModel)]="user.dob">
+        <input type="date" placeholder="Data de Nascimento" class="form-control w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" name="dob" [(ngModel)]="user.dob">
     </div>
     <div class="form-group">
-        <select class="form-control" name="gender" [(ngModel)]="user.gender">
-            <option value="male">Masculino</option>
-            <option value="female">Feminino</option>
-            <option value="other">Outro</option>
+        <select class="form-control w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" name="gender" [(ngModel)]="user.gender">
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
         </select>
     </div>
-    <div class="form-group">
-        <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-primary" (click)="cadastrar()">
-        <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
-        <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger" (click)="remover()">
-        <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
+    <div class="form-group flex space-x-2">
+        <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50" (click)="cadastrar()">
+        <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50" (click)="editar()">
+        <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" (click)="remover()">
+        <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50" (click)="cancelar()">
     </div>
 </form>
 
-<table class="table" *ngIf="tabela">
-    <thead>
+<div class="flex justify-center mt-4">
+    <table class="table w-48 gap-4">
+      <thead>
         <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-            <th>Data de Nascimento</th>
-            <th>Gênero</th>
-            <th>Foto</th>
-            <th>Selecionar</th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">#</th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Sobrenome</th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Data de Nascimento</th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Gênero</th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Foto</th>
+          <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Selecionar</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of users; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.lastname }}</td>
-            <td>{{ user.dob }}</td>
-            <td>{{ user.gender }}</td>
-            <td>
-                <div class="user-photo-container">
-                    <img [src]="user.photo" alt="Foto do usuário" class="user-photo">
-                </div>
-            </td>
-            <td><button class="btn btn-success" (click)="selecionarUser(i)">Selecionar</button></td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index" class="bg-white">
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ i + 1 }}</td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ user.name }}</td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ user.lastname }}</td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ user.dob }}</td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ user.gender }}</td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+            <div class="user-photo-container">
+              <img [src]="user.photo" alt="Foto do usuário" class="user-photo">
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+            <button class="btn bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" (click)="selecionarUser(i)">Selecionar</button>
+          </td>
         </tr>
-    </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
+  

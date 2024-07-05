@@ -1,43 +1,42 @@
-<main>
-  <section class="form-section">
-    <img src="/assets/svg/logo.svg" />
-    <h2>Administrativo</h2>
+<main class="min-h-screen bg-gray-800 flex flex-col items-center justify-center">
+  <section class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <img src="/assets/svg/logo.svg" class="mx-auto mb-4 w-24" />
+    <h2 class="text-2xl font-semibold text-center mb-6">Administrativo</h2>
     
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
-      <div class="input-wrapper">
-        <label for="email">Email</label>
-        <div class="input-content">
-          <input formControlName="email" type="email" placeholder="Digite seu E-mail" />
-          <div class="icon">
-            <img src="/assets/svg/email-icon.svg" />
+      <div class="mb-4">
+        <label for="email" class="block text-gray-700">Email</label>
+        <div class="relative mt-1">
+          <input formControlName="email" type="email" placeholder="Digite seu E-mail" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+            <img src="/assets/svg/email-icon.svg" class="h-5 w-5 bg-primary" />
           </div>
         </div>
       </div>
 
-      <div class="input-wrapper">
-        <label for="password">Senha</label>
-        <div class="input-content">
-          <input formControlName="password" type="password" placeholder="Digite sua senha" />
-          <div class="icon">
-            <img src="/assets/svg/password-icon.svg" />
+      <div class="mb-6">
+        <label for="password" class="block text-gray-700">Senha</label>
+        <div class="relative mt-1">
+          <input formControlName="password" type="password" placeholder="Digite sua senha" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+            <img src="/assets/svg/password-icon.svg" class="h-5 w-5 bg-primary" />
           </div>
         </div>
       </div>
       
-      <div class="btn-wrapper">
-        <button class="btn-primary" type="submit" [disabled]="disablePrimaryBtn">
+      <div class="flex flex-col items-center">
+        <button class="w-full bg-primary text-white py-2 rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50" type="submit" [disabled]="disablePrimaryBtn">
           Entrar
-        </button>
-        <div class="divider">
-          <div></div>
-          <span></span>
-          <div></div>
+        </button>        
+        <div class="flex items-center my-4 w-full">
+          <div class="flex-grow h-px bg-gray-300"></div>
+          <div class="flex-grow h-px bg-gray-300"></div>
         </div>
       </div>
     </form>
   </section>
   
-  <section class="main-section">
+  <section class="main-section mt-8">
     <!-- Conteúdo da seção principal -->
   </section>
 </main>

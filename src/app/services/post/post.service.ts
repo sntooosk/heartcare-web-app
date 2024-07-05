@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../../models/Post';
-import { AuthService } from '../auth/auth.service'; // Certifique-se de ter o AuthService
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'

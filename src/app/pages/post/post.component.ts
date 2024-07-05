@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/Post';
-import { PostService } from '../../services/post/post.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PostService } from '../../services/post/post.service';
 
 @Component({
   selector: 'app-post',

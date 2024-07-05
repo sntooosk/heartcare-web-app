@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { AuthResponse } from '../../models/dto/auth/auth-response-dto';
-import { User } from '../../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -15,27 +14,7 @@ export class AuthService {
     private httpClient: HttpClient
   ) { }
 
-  getUser() {
-    const userId = this.getUserId();
-    const userToken = this.getToken();
-
-    return this.httpClient.get<User>(`${this.URL}/users/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${userToken}`
-      }
-    }).pipe(
-      tap((user: User) => {
-        sessionStorage.setItem('user-id', user.id.toString());
-        sessionStorage.setItem('user-name', user.name);
-        sessionStorage.setItem('user-lastname', user.lastname);
-        sessionStorage.setItem('user-dob', user.dob);
-        sessionStorage.setItem('user-gender', user.gender);
-        sessionStorage.setItem('user-photo', user.photo);
-      })
-    );
-  }
-
-
+ 
   login(email: string, password: string) {
     return this.httpClient
       .post<AuthResponse>(`${this.URL}/auth/login`, { email, password })
@@ -57,10 +36,6 @@ export class AuthService {
 
   getUsername(): string {
     return sessionStorage.getItem('user-name') || '';
-  }
-
-  getPhoto(): string {
-    return sessionStorage.getItem('user-photo') || '';
   }
 
   getUserId(): number {

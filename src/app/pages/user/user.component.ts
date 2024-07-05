@@ -28,7 +28,7 @@ export class userComponent implements OnInit {
   constructor(
     private service: UserService,
     private toastService: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.selecionar();
@@ -37,9 +37,9 @@ export class userComponent implements OnInit {
   selecionar(): void {
     this.service.selecionar()
       .subscribe(retorno => this.users = retorno,
-      error => {
-        this.toastService.error('Erro ao obter users. Por favor, tente novamente.');
-      });
+        error => {
+          this.toastService.error('Erro ao obter users. Por favor, tente novamente.');
+        });
   }
 
   cadastrar(): void {
@@ -49,9 +49,9 @@ export class userComponent implements OnInit {
         this.user = new User();
         this.toastService.success('user cadastrado com sucesso!');
       },
-      error => {
-        this.toastService.error('Erro ao cadastrar o user.');
-      });
+        error => {
+          this.toastService.error('Erro ao cadastrar o user.');
+        });
   }
 
   selecionarUser(posicao: number): void {
@@ -70,9 +70,9 @@ export class userComponent implements OnInit {
         this.tabela = true;
         this.toastService.success('user alterado com sucesso!');
       },
-      error => {
-        this.toastService.error('Erro ao alterar o user.');
-      });
+        error => {
+          this.toastService.error('Erro ao alterar o user.');
+        });
   }
 
   remover(): void {
@@ -85,9 +85,9 @@ export class userComponent implements OnInit {
         this.tabela = true;
         this.toastService.success('user removido com sucesso!');
       },
-      error => {
-        this.toastService.error('Erro ao remover o user.');
-      });
+        error => {
+          this.toastService.error('Erro ao remover o user.');
+        });
   }
 
   cancelar(): void {
