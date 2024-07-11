@@ -39,9 +39,6 @@ export class LoginComponent {
       next: () => {
         this.router.navigate(['/home']);
       },
-      error: () => {
-        this.toastService.error('Erro ao fazer login.');
-      },
     });
   }
 }

@@ -24,10 +24,12 @@ export class AuthService {
       .pipe(
         tap((authResponse: AuthResponse) => {
           if (authResponse.role === 'USER') {
-            this.toastService.error('Usuario nao Autorizado');
-          } else {
+            this.toastService.error('Usuário não autorizado.');
+          } else if (authResponse.role === 'ADMIN') {
             sessionStorage.setItem('user-token', authResponse.token);
             sessionStorage.setItem('user-id', authResponse.id.toString());
+          } else {
+            this.toastService.error('Credenciais inválidas.');
           }
         })
       );
