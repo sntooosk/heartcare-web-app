@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { AuthResponse } from '../../models/dto/auth/auth-response-dto';
+import { throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -11,17 +13,22 @@ export class AuthService {
   private URL: string = 'https://heartcare-backend.onrender.com/api/v1';
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private toastService: ToastrService,
+
   ) { }
 
- 
   login(email: string, password: string) {
     return this.httpClient
       .post<AuthResponse>(`${this.URL}/auth/login`, { email, password })
       .pipe(
         tap((authResponse: AuthResponse) => {
-          sessionStorage.setItem('user-token', authResponse.token);
-          sessionStorage.setItem('user-id', authResponse.id.toString());
+          if (authResponse.role === 'USER') {
+            this.toastService.error('Usuario nao Autorizado');
+          } else {
+            sessionStorage.setItem('user-token', authResponse.token);
+            sessionStorage.setItem('user-id', authResponse.id.toString());
+          }
         })
       );
   }
