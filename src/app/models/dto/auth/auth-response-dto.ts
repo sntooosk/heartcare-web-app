@@ -3,4 +3,5 @@ export type AuthResponse = {
   token: string;
   name: string;
   role: string
+  message: string
 };

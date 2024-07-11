@@ -29,7 +29,7 @@ export class AuthService {
             sessionStorage.setItem('user-token', authResponse.token);
             sessionStorage.setItem('user-id', authResponse.id.toString());
           } else {
-            this.toastService.error('Credenciais inválidas.');
+            this.toastService.error(authResponse.message);
           }
         })
       );
