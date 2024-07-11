@@ -1,4 +1,4 @@
-<div class="flex justify-center mt-4">
+<div class="flex flex-col items-center mt-4">
   <form class="max-w-md mx-auto mt-4 space-y-4 px-4 py-6 bg-white shadow-md rounded-lg">
     <div class="form-group">
       <label for="userFilter" class="block text-gray-700">Filtrar por Usuário:</label>
@@ -7,7 +7,7 @@
     </div>
   </form>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 w-full max-w-6xl">
     <div *ngFor="let c of filteredPressures(); let i = index"
       class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
       <div class="p-4">
