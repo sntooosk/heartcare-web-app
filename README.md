@@ -1,7 +1,3 @@
-# HeartCare Web Application
-
-Frontend desenvolvido em Angular para a aplicação HeartCare, focada nos cuidados cardíacos.
-
 ## Tecnologias Utilizadas
 
 <p align="center">
@@ -77,9 +73,3 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICEN
 ## Contato
 
 Juliano Cassimiro dos Santos - [LinkedIn](https://www.linkedin.com/in/sntooosk)
-
----
-
-<div align="center">
-  <strong>HeartCare</strong> - Cuidando do seu coração com tecnologia
-</div>
