@@ -1,7 +1,8 @@
 # HeartCare Web Application
- 
-## Tecnologias Utilizadas
 
+Frontend desenvolvido em Angular para a aplicação HeartCare, focada nos cuidados cardíacos.
+
+## Tecnologias Utilizadas
 
 <p align="center">
   <img src="https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
@@ -12,10 +13,9 @@
 ## Funcionalidades
 
 - **Autenticação e Autorização**: Sistema de login com AuthGuard para proteger rotas.
-- **Validação de Administrador**: Validação de usuários administradores.
+- **Validação de Administrador**: Garante acesso restrito a administradores.
 - **Publicações**: Criação e gerenciamento de publicações.
-- **Medições**: Página para visualização de medições de todos os usuários.
-
+- **Medições**: Visualização de medições de todos os usuários.
 
 ## Instalação
 
@@ -68,7 +68,7 @@
     ```bash
     git push origin minha-feature
     ```
-5. Abra um Pull Request.
+5. Abra um Pull Request para revisão.
 
 ## Licença
 
