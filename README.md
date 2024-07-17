@@ -1,5 +1,8 @@
 # HeartCare Web Application
  
+## Tecnologias Utilizadas
+
+
 <p align="center">
   <img src="https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
   <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
@@ -13,11 +16,6 @@
 - **Publicações**: Criação e gerenciamento de publicações.
 - **Medições**: Página para visualização de medições de todos os usuários.
 
-## Tecnologias Utilizadas
-
-- **Angular**: Framework principal para desenvolvimento da aplicação.
-- **Tailwind CSS**: Framework de CSS para estilização rápida e eficiente.
-- **SCSS**: Preprocessador CSS para estilos mais complexos e organizados.
 
 ## Instalação
 
