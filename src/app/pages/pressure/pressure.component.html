@@ -1,22 +1,31 @@
-<div class="flex flex-col items-center mt-4">
-  <form class="max-w-md mx-auto mt-4 space-y-4 px-4 py-6 bg-white shadow-md rounded-lg">
-    <div class="form-group">
-      <label for="userFilter" class="block text-gray-700">Filtrar por Usuário:</label>
-      <input id="userFilter" type="text" [(ngModel)]="userFilter" class="mt-1 p-2 border border-gray-300 rounded-md"
-        placeholder="Digite o nome do usuário" />
-    </div>
-  </form>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-list>
+      <mat-list-item *ngFor="let user of userNames">
+        <button mat-button (click)="selectUser(user)">
+          <img [src]="getUserPhoto(user)" alt="Foto do usuário" class="w-8 h-8 rounded-full mr-2" />
+          {{ user }}
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 w-full max-w-6xl">
-    <div *ngFor="let c of filteredPressures(); let i = index"
-      class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
-      <div class="p-4">
-        <img [src]="c.userPhoto" alt="Foto do usuário" class="w-12 h-12 rounded-full" />
-        <p class="text-xl font-semibold mb-2">{{ c.userName }} {{ c.userLastName }}</p>
-        <p class="text-gray-700 mb-4">pressão diastólica é: {{ c.diastolic }}</p>
-        <p class="text-gray-700 mb-4">pressão sistólica é: {{ c.systolic }}</p>
-        <p class="text-gray-700 mb-4">Medição feita em: {{ convertDate(c.date) }}</p>
+  <mat-drawer-content>
+    <div class="flex justify-between items-center p-4 bg-gray-100">
+      <h1 class="text-xl font-bold">Monitoramento de Pressão</h1>
+      <button mat-icon-button (click)="toggleDrawer()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="flex flex-col items-center mt-4">
+      <div *ngIf="selectedUser" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 w-full max-w-6xl">
+        <div *ngFor="let c of getUserPressures(selectedUser); index as i" class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
+          <div class="p-4">
+            <p class="text-gray-700 mb-4">Pressão diastólica: {{ c.diastolic }}</p>
+            <p class="text-gray-700 mb-4">Pressão sistólica: {{ c.systolic }}</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

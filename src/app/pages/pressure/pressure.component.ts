@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Pressure } from '../../models/Pressure';
 import { PressureService } from '../../services/pressure/pressure.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-pressure',
@@ -11,16 +16,22 @@ import { CommonModule } from '@angular/common';
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './pressure.component.html',
   styleUrls: ['./pressure.component.scss']
 })
 export class PressureComponent implements OnInit {
-
+  @ViewChild('drawer') drawer!: MatDrawer;
+  
   pressure = new Pressure();
   pressures: Pressure[] = [];
-  userFilter: string = '';
+  userNames: string[] = [];
+  selectedUser: string = '';
 
   constructor(
     private service: PressureService,
@@ -35,20 +46,30 @@ export class PressureComponent implements OnInit {
     this.service.selecionar()
       .subscribe(retorno => {
         this.pressures = retorno.sort((a, b) => a.id - b.id);
+        this.extractUserNames();
       },
       error => {
         this.toastService.error('Erro ao obter pressure. Por favor, tente novamente.');
       });
   }
 
-  filteredPressures(): Pressure[] {
-    if (!this.userFilter.trim()) {
-      return this.pressures;
-    }
-    return this.pressures.filter(p =>
-      p.userName.toLowerCase().includes(this.userFilter.toLowerCase()) ||
-      p.userLastName.toLowerCase().includes(this.userFilter.toLowerCase())
-    );
+  extractUserNames(): void {
+    const userNameSet = new Set<string>();
+    this.pressures.forEach(p => {
+      const fullName = `${p.userName} ${p.userLastName}`;
+      userNameSet.add(fullName);
+    });
+    this.userNames = Array.from(userNameSet);
+  }
+
+  getUserPhoto(userName: string): string | undefined {
+    const user = this.pressures.find(p => `${p.userName} ${p.userLastName}` === userName);
+    return user?.userPhoto;
+  }
+
+  selectUser(userName: string) {
+    this.selectedUser = userName;
+    this.drawer.close();
   }
 
   convertDate(dateStr: string): string {
@@ -63,5 +84,13 @@ export class PressureComponent implements OnInit {
       timeZoneName: 'short'
     };
     return date.toLocaleDateString('pt-BR', options);
+  }
+
+  getUserPressures(userName: string): Pressure[] {
+    return this.pressures.filter(p => `${p.userName} ${p.userLastName}` === userName);
+  }
+
+  toggleDrawer(): void {
+    this.drawer.toggle();
   }
 }
