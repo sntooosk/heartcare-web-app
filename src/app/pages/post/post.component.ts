@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/Post';
 import { ToastrService } from 'ngx-toastr';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { PostService } from '../../services/post/post.service';
+import { PostFormComponent } from '../../components/post-form-component/post-form-component.component';
+import { PostListComponent } from '../../components/post-list-component/post-list-component.component';
 
 @Component({
   selector: 'app-post',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule
+    PostFormComponent,
+    PostListComponent
   ],
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']

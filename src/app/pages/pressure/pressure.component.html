@@ -1,31 +1,18 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <mat-list>
-      <mat-list-item *ngFor="let user of userNames">
-        <button mat-button (click)="selectUser(user)">
-          <img [src]="getUserPhoto(user)" alt="Foto do usuário" class="w-8 h-8 rounded-full mr-2" />
-          {{ user }}
-        </button>
-      </mat-list-item>
-    </mat-list>
-  </mat-drawer>
+<div class="flex min-h-screen">
+  <app-user-list 
+    [userNames]="userNames" 
+    [pressures]="pressures" 
+    (selectUser)="selectUser($event)" 
+    class="sidebar w-64 bg-gray-200 p-4">
+  </app-user-list>
 
-  <mat-drawer-content>
-    <div class="flex justify-between items-center p-4 bg-gray-100">
-      <h1 class="text-xl font-bold">Monitoramento de Pressão</h1>
-      <button mat-icon-button (click)="toggleDrawer()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
+  <div class="flex-grow p-4">
     <div class="flex flex-col items-center mt-4">
-      <div *ngIf="selectedUser" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 w-full max-w-6xl">
-        <div *ngFor="let c of getUserPressures(selectedUser); index as i" class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
-          <div class="p-4">
-            <p class="text-gray-700 mb-4">Pressão diastólica: {{ c.diastolic }}</p>
-            <p class="text-gray-700 mb-4">Pressão sistólica: {{ c.systolic }}</p>
-          </div>
-        </div>
-      </div>
+      <app-user-pressure 
+        [pressures]="pressures" 
+        [selectedUser]="selectedUser" 
+        class="w-full max-w-6xl mt-4">
+      </app-user-pressure>
     </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+  </div>
+</div>

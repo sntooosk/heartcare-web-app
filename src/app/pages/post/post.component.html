@@ -1,42 +1,4 @@
-<form class="max-w-md mx-auto mt-4 space-y-4 px-4 py-6 bg-white shadow-md rounded-lg">
-  <div class="form-group">
-    <input type="text" placeholder="Título"
-      class="form-control w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-      name="titulo" [(ngModel)]="post.title">
-  </div>
-  <div class="form-group">
-    <input type="text" placeholder="Comentário"
-      class="form-control w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-      name="comentario" [(ngModel)]="post.comment">
-  </div>
-
-  <div class="form-group flex space-x-2">
-    <input type="button" value="Cadastrar" *ngIf="btnCadastro"
-      class="btn bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-      (click)="cadastrar()">
-    <input type="button" value="Alterar" *ngIf="!btnCadastro"
-      class="btn bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
-      (click)="editar()">
-    <input type="button" value="Remover" *ngIf="!btnCadastro"
-      class="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
-      (click)="remover()">
-    <input type="button" value="Cancelar" *ngIf="!btnCadastro"
-      class="btn bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
-      (click)="cancelar()">
-  </div>
-</form>
-
-<div class="flex justify-center mt-4">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div *ngFor="let c of posts; index as i" class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
-      <div class="p-4">
-        <h3 class="text-xl font-semibold mb-2">{{ c.title }}</h3>
-        <p class="text-gray-700 mb-4">{{ c.comment }}</p>
-        <button
-          class="btn bg-segundary-dark text-pink px-4 py-2 rounded-md hover:bg-primary-dark text-white focus:outline-none focus:ring-2 focus:bg-primary-dark focus:ring-opacity-50"
-          (click)="selecionarPost(i)">Selecionar</button>
-      </div>
-    </div>
-  </div>
+<div>
+  <app-post-form-component [post]="post" [btnCadastro]="btnCadastro" (cadastrar)="cadastrar()" (editar)="editar()" (remover)="remover()" (cancelar)="cancelar()"></app-post-form-component>
+  <app-post-list-component [posts]="posts" (selecionarPost)="selecionarPost($event)"></app-post-list-component>
 </div>
-
