@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
     MatToolbar,
     MatList, 
     MatListItem,
-    CommonModule
+    CommonModule,
     ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
