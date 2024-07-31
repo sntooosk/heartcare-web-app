@@ -1,4 +1,16 @@
 <div>
-  <app-post-form-component [post]="post" [btnCadastro]="btnCadastro" (cadastrar)="cadastrar()" (editar)="editar()" (remover)="remover()" (cancelar)="cancelar()"></app-post-form-component>
-  <app-post-list-component [posts]="posts" (selecionarPost)="selecionarPost($event)"></app-post-list-component>
+  <app-post-form-component 
+    [post]="post" 
+    [btnCadastro]="btnCadastro" 
+    (cadastrar)="cadastrar()" 
+    (editar)="editar()" 
+    (remover)="remover()" 
+    (cancelar)="cancelar()">
+  </app-post-form-component>
+
+  <app-post-list-component 
+    [posts]="posts" 
+    [loading]="loading" 
+    (selecionarPost)="selecionarPost($event)">
+  </app-post-list-component>
 </div>

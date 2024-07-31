@@ -18,12 +18,9 @@ import { PostListComponent } from '../../components/post-list-component/post-lis
 export class PostComponent implements OnInit {
 
   post = new Post();
-
   btnCadastro: boolean = true;
   tabela: boolean = true;
   loading: boolean = false;
-
-
   posts: Post[] = [];
 
   constructor(
@@ -36,25 +33,33 @@ export class PostComponent implements OnInit {
   }
 
   selecionar(): void {
-    this.loading = true
-    this.service.selecionar()
-      .subscribe(retorno => this.posts = retorno,
-        this.loading = false,
-      error => {
+    this.loading = true;
+    this.service.selecionar().subscribe({
+      next: retorno => {
+        this.posts = retorno;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
         this.toastService.error('Erro ao obter posts. Por favor, tente novamente.');
-      });
+      }
+    });
   }
 
   cadastrar(): void {
-    this.service.cadastrar(this.post)
-      .subscribe(retorno => {
+    this.loading = true;
+    this.service.cadastrar(this.post).subscribe({
+      next: retorno => {
         this.posts.push(retorno);
         this.post = new Post();
+        this.loading = false;
         this.toastService.success('Post cadastrado com sucesso!');
       },
-      error => {
+      error: () => {
+        this.loading = false;
         this.toastService.error('Erro ao cadastrar o post.');
-      });
+      }
+    });
   }
 
   selecionarPost(posicao: number): void {
@@ -64,33 +69,41 @@ export class PostComponent implements OnInit {
   }
 
   editar(): void {
-    this.service.editar(this.post.id, this.post)
-      .subscribe(retorno => {
+    this.loading = true;
+    this.service.editar(this.post.id, this.post).subscribe({
+      next: retorno => {
         let posicao = this.posts.findIndex(obj => obj.id === retorno.id);
         this.posts[posicao] = retorno;
         this.post = new Post();
         this.btnCadastro = true;
         this.tabela = true;
+        this.loading = false;
         this.toastService.success('Post alterado com sucesso!');
       },
-      error => {
+      error: () => {
+        this.loading = false;
         this.toastService.error('Erro ao alterar o post.');
-      });
+      }
+    });
   }
 
   remover(): void {
-    this.service.remover(this.post.id)
-      .subscribe(retorno => {
+    this.loading = true;
+    this.service.remover(this.post.id).subscribe({
+      next: () => {
         let posicao = this.posts.findIndex(obj => obj.id === this.post.id);
         this.posts.splice(posicao, 1);
         this.post = new Post();
         this.btnCadastro = true;
         this.tabela = true;
+        this.loading = false;
         this.toastService.success('Post removido com sucesso!');
       },
-      error => {
+      error: () => {
+        this.loading = false;
         this.toastService.error('Erro ao remover o post.');
-      });
+      }
+    });
   }
 
   cancelar(): void {
