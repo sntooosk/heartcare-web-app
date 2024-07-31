@@ -21,6 +21,8 @@ export class PostComponent implements OnInit {
 
   btnCadastro: boolean = true;
   tabela: boolean = true;
+  loading: boolean = false;
+
 
   posts: Post[] = [];
 
@@ -34,8 +36,10 @@ export class PostComponent implements OnInit {
   }
 
   selecionar(): void {
+    this.loading = true
     this.service.selecionar()
       .subscribe(retorno => this.posts = retorno,
+        this.loading = false,
       error => {
         this.toastService.error('Erro ao obter posts. Por favor, tente novamente.');
       });

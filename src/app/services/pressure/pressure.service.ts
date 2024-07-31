@@ -11,7 +11,10 @@ export class PressureService {
 
   private url: string = 'https://heartcare-backend.onrender.com/api/v1/pressure/';
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+  ) { }
 
   token: string = this.authService.getToken();
 

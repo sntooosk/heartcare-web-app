@@ -1,16 +1,17 @@
 <div class="h-screen flex">
-  <app-user-list 
-    [userNames]="userNames" 
-    [pressures]="pressures" 
-    (selectUser)="selectUser($event)" 
+  <app-user-list
+    [userNames]="userNames"
+    [pressures]="pressures"
+    [loading]="loading"
+    (selectUser)="selectUser($event)"
     class="bg-gray-800 p-4">
   </app-user-list>
 
   <div class="flex-grow p-4">
     <div class="flex flex-col items-center mt-4">
-      <app-user-pressure 
-        [pressures]="pressures" 
-        [selectedUser]="selectedUser" 
+      <app-user-pressure
+        [pressures]="pressures"
+        [selectedUser]="selectedUser"
         class="w-full max-w-6xl mt-4">
       </app-user-pressure>
     </div>

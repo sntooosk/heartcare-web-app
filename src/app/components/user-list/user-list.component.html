@@ -1,25 +1,26 @@
 <div class="h-screen bg-gray-800 p-4 w-64">
-    <!-- Título da Sidebar -->
-    <div class="p-4 text-white font-bold text-lg">
-      Usuários
-    </div>
-  
-    <!-- Lista de Usuários -->
-    <div class="bg-gray-700 p-2 mt-2 rounded-md">
-      <div
-        *ngFor="let user of userNames"
-        class="flex items-center p-2 hover:bg-gray-600 rounded-md cursor-pointer"
-        (click)="selectUser.emit(user)"
-      >
-        <img
-          [src]="getUserPhoto(user)"
-          alt="Foto do usuário"
-          class="w-10 h-10 rounded-full"
-        />
-        <span class="ml-4 text-white text-sm">
-          {{ user }}
-        </span>
-      </div>
+  <div class="p-4 text-white font-bold text-lg">
+    Usuários
+  </div>
+
+  <div *ngIf="loading" class="p-5">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+
+  <div *ngIf="!loading" class="bg-gray-700 p-2 mt-2 rounded-md">
+    <div
+      *ngFor="let user of userNames"
+      class="flex items-center p-2 hover:bg-gray-600 rounded-md cursor-pointer"
+      (click)="selectUser.emit(user)"
+    >
+      <img
+        [src]="getUserPhoto(user)"
+        alt="Foto do usuário"
+        class="w-10 h-10 rounded-full"
+      />
+      <span class="ml-4 text-white text-sm">
+        {{ user }}
+      </span>
     </div>
   </div>
-  
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pressure } from '../../models/Pressure';
 import { PressureService } from '../../services/pressure/pressure.service';
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +21,7 @@ export class PressureComponent implements OnInit {
   pressures: Pressure[] = [];
   userNames: string[] = [];
   selectedUser: string = '';
+  loading: boolean = false;
 
   constructor(
     private service: PressureService,
@@ -32,14 +33,17 @@ export class PressureComponent implements OnInit {
   }
 
   selecionar(): void {
+    this.loading = true;
     this.service.selecionar()
       .subscribe(retorno => {
         this.pressures = retorno.sort((a, b) => a.id - b.id);
         this.extractUserNames();
+        this.loading = false;
       },
-        error => {
-          this.toastService.error('Erro ao obter pressão. Por favor, tente novamente.');
-        });
+      error => {
+        this.toastService.error('Erro ao obter pressão. Por favor, tente novamente.');
+        this.loading = false; // Desativa o carregamento em caso de erro
+      });
   }
 
   extractUserNames(): void {
@@ -54,4 +58,5 @@ export class PressureComponent implements OnInit {
   selectUser(userName: string) {
     this.selectedUser = userName;
   }
+
 }
