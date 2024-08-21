@@ -18,7 +18,7 @@ import { PostListComponent } from '../../components/post-list-component/post-lis
 export class PostComponent implements OnInit {
 
   post = new Post();
-  btnCadastro: boolean = true;
+  btnPublicar: boolean = true;
   tabela: boolean = true;
   loading: boolean = false;
   posts: Post[] = [];
@@ -46,25 +46,25 @@ export class PostComponent implements OnInit {
     });
   }
 
-  cadastrar(): void {
+  publicar(): void {
     this.loading = true;
-    this.service.cadastrar(this.post).subscribe({
+    this.service.publicar(this.post).subscribe({
       next: retorno => {
         this.posts.push(retorno);
         this.post = new Post();
         this.loading = false;
-        this.toastService.success('Post cadastrado com sucesso!');
+        this.toastService.success('Post Publicado com sucesso!');
       },
       error: () => {
         this.loading = false;
-        this.toastService.error('Erro ao cadastrar o post.');
+        this.toastService.error('Erro ao publicar o post.');
       }
     });
   }
 
   selecionarPost(posicao: number): void {
     this.post = this.posts[posicao];
-    this.btnCadastro = false;
+    this.btnPublicar = false;
     this.tabela = false;
   }
 
@@ -75,7 +75,7 @@ export class PostComponent implements OnInit {
         let posicao = this.posts.findIndex(obj => obj.id === retorno.id);
         this.posts[posicao] = retorno;
         this.post = new Post();
-        this.btnCadastro = true;
+        this.btnPublicar = true;
         this.tabela = true;
         this.loading = false;
         this.toastService.success('Post alterado com sucesso!');
@@ -94,7 +94,7 @@ export class PostComponent implements OnInit {
         let posicao = this.posts.findIndex(obj => obj.id === this.post.id);
         this.posts.splice(posicao, 1);
         this.post = new Post();
-        this.btnCadastro = true;
+        this.btnPublicar = true;
         this.tabela = true;
         this.loading = false;
         this.toastService.success('Post removido com sucesso!');
@@ -108,7 +108,7 @@ export class PostComponent implements OnInit {
 
   cancelar(): void {
     this.post = new Post();
-    this.btnCadastro = true;
+    this.btnPublicar = true;
     this.tabela = true;
   }
 }

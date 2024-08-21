@@ -7,10 +7,10 @@
     </div>
   
     <div class="form-group flex space-x-2">
-      <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50" (click)="onCadastrar()">
-      <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50" (click)="onEditar()">
-      <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" (click)="onRemover()">
-      <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50" (click)="onCancelar()">
+      <input type="button" value="Publicar" *ngIf="btnPublicar" class="btn bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50" (click)="onPublicar()">
+      <input type="button" value="Alterar" *ngIf="!btnPublicar" class="btn bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50" (click)="onEditar()">
+      <input type="button" value="Remover" *ngIf="!btnPublicar" class="btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" (click)="onRemover()">
+      <input type="button" value="Cancelar" *ngIf="!btnPublicar" class="btn bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50" (click)="onCancelar()">
     </div>
   </form>
   

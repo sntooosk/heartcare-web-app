@@ -26,7 +26,7 @@ export class PostService {
     return this.http.get<Post[]>(this.url, { headers: this.getAuthHeaders() });
   }
 
-  cadastrar(obj: Post): Observable<Post> {
+  publicar(obj: Post): Observable<Post> {
     return this.http.post<Post>(this.url, obj, { headers: this.getAuthHeaders() });
   }
 

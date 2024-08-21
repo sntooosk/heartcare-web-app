@@ -14,14 +14,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class PostFormComponent {
   @Input() post: Post = new Post();
-  @Input() btnCadastro: boolean = true;
-  @Output() cadastrar = new EventEmitter<void>();
+  @Input() btnPublicar: boolean = true;
+  @Output() publicar = new EventEmitter<void>();
   @Output() editar = new EventEmitter<void>();
   @Output() remover = new EventEmitter<void>();
   @Output() cancelar = new EventEmitter<void>();
 
-  onCadastrar(): void {
-    this.cadastrar.emit();
+  onPublicar(): void {
+    this.publicar.emit();
   }
 
   onEditar(): void {
