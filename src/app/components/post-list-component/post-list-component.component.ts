@@ -16,8 +16,16 @@ export class PostListComponent {
   @Output() selecionarPost = new EventEmitter<number>();
   placeholderArray: any[] = new Array(6);
 
-
   onSelecionarPost(index: number): void {
     this.selecionarPost.emit(index);
+  }
+
+  formatarData(date: Date): string {
+    if (!date) return '';
+    return new Date(date).toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
   }
 }
