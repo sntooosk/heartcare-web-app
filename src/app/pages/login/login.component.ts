@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -47,8 +52,10 @@ export class LoginComponent {
         this.router.navigate(['/home']);
       },
       error: () => {
-        this.toastr.error('Falha ao realizar login. Verifique suas credenciais.');
-      }
+        this.toastr.error(
+          'Falha ao realizar login. Verifique suas credenciais.'
+        );
+      },
     });
   }
 }

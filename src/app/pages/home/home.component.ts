@@ -5,12 +5,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet , HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
-export class HomeComponent{
-  constructor() {}
-
-}
-
+export class HomeComponent {}

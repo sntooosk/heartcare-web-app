@@ -8,7 +8,7 @@ import { CardLoadingComponent } from '../card-loading/card-loading.component';
   standalone: true,
   imports: [CommonModule, CardLoadingComponent],
   templateUrl: './post-list-component.component.html',
-  styleUrls: ['./post-list-component.component.scss']
+  styleUrls: ['./post-list-component.component.scss'],
 })
 export class PostListComponent {
   @Input() posts: Post[] = [];
@@ -26,7 +26,7 @@ export class PostListComponent {
     return dateObject.toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric'
+      year: 'numeric',
     });
   }
 }

@@ -17,10 +17,10 @@ import { UserLoadingComponent } from '../user-loading/user-loading.component';
     MatProgressBarModule,
     CommonModule,
     CardLoadingComponent,
-    UserLoadingComponent
+    UserLoadingComponent,
   ],
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent {
   @Input() userNames: string[] = [];
@@ -28,10 +28,12 @@ export class UserListComponent {
   @Input() loading: boolean = false;
   @Output() selectUser = new EventEmitter<string>();
 
-  placeholderArray: any[] = new Array(4); // Placeholder array for loading state
+  placeholderArray: any[] = new Array(4);
 
   getUserPhoto(userName: string): string | undefined {
-    const user = this.pressures.find(p => `${p.userName} ${p.userLastName}` === userName);
+    const user = this.pressures.find(
+      (p) => `${p.userName} ${p.userLastName}` === userName
+    );
     return user?.userPhoto;
   }
 

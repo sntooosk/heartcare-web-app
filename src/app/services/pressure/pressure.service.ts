@@ -5,24 +5,25 @@ import { AuthService } from '../auth/auth.service';
 import { Pressure } from '../../models/Pressure';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PressureService {
-  private url: string = 'https://heartcare-backend.onrender.com/api/v1/pressure/';
+  private url: string =
+    'https://heartcare-backend.onrender.com/api/v1/pressure/';
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  token: string = this.authService.getToken();
 
   private getAuthHeaders(): HttpHeaders {
-    const token = this.authService.getToken();
     return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${this.token}`,
     });
   }
 
   selecionar(): Observable<Pressure[]> {
-    return this.http.get<Pressure[]>(this.url, { headers: this.getAuthHeaders() });
+    return this.http.get<Pressure[]>(this.url, {
+      headers: this.getAuthHeaders(),
+    });
   }
 }

@@ -6,11 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-post-form-component',
   standalone: true,
-  imports: [ReactiveFormsModule,
-    FormsModule,
-    CommonModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './post-form-component.component.html',
-  styleUrl: './post-form-component.component.scss'
+  styleUrl: './post-form-component.component.scss',
 })
 export class PostFormComponent {
   @Input() post: Post = new Post();

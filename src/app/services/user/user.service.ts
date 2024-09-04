@@ -5,31 +5,32 @@ import { AuthService } from '../auth/auth.service';
 import { User } from '../../models/User';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private baseUrl: string = 'https://heartcare-backend.onrender.com/api/v1/users/';
+  private baseUrl: string =
+    'https://heartcare-backend.onrender.com/api/v1/users/';
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   private getAuthHeaders(): HttpHeaders {
     const token = this.authService.getToken();
     return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     });
   }
 
   private buildHttpOptions(): { headers: HttpHeaders } {
     return {
-      headers: this.getAuthHeaders()
+      headers: this.getAuthHeaders(),
     };
   }
 
   getUser(): Observable<User> {
     const userId = this.authService.getUserId();
-    return this.http.get<User>(`${this.baseUrl}${userId}`, this.buildHttpOptions());
+    return this.http.get<User>(
+      `${this.baseUrl}${userId}`,
+      this.buildHttpOptions()
+    );
   }
 }

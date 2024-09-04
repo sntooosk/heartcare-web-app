@@ -16,31 +16,34 @@
 ## Instalação
 
 1. Clone o repositório:
-    ```bash
-    git clone https://github.com/sntooosk/heartcare-frontend-web.git
-    ```
+
+   ```bash
+   git clone https://github.com/sntooosk/heartcare-frontend-web.git
+   ```
 
 2. Navegue até o diretório do projeto:
-    ```bash
-    cd heartcare-frontend-web
-    ```
+
+   ```bash
+   cd heartcare-frontend-web
+   ```
 
 3. Instale as dependências:
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 ## Uso
 
 1. Inicie o servidor de desenvolvimento:
-    ```bash
-    ng serve
-    ```
+
+   ```bash
+   ng serve
+   ```
 
 2. Abra o navegador e acesse:
-    ```
-    http://localhost:4200
-    ```
+   ```
+   http://localhost:4200
+   ```
 
 ## Estrutura do Projeto
 
@@ -53,17 +56,17 @@
 
 1. Faça um fork do projeto.
 2. Crie uma branch para sua feature:
-    ```bash
-    git checkout -b minha-feature
-    ```
+   ```bash
+   git checkout -b minha-feature
+   ```
 3. Faça commit das suas alterações:
-    ```bash
-    git commit -m 'Adiciona minha feature'
-    ```
+   ```bash
+   git commit -m 'Adiciona minha feature'
+   ```
 4. Envie para o branch principal:
-    ```bash
-    git push origin minha-feature
-    ```
+   ```bash
+   git push origin minha-feature
+   ```
 5. Abra um Pull Request para revisão.
 
 ## Licença

@@ -8,12 +8,9 @@ import { PostListComponent } from '../../components/post-list-component/post-lis
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [
-    PostFormComponent,
-    PostListComponent
-  ],
+  imports: [PostFormComponent, PostListComponent],
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  styleUrls: ['./post.component.scss'],
 })
 export class PostComponent implements OnInit {
   post: Post = new Post();
@@ -42,7 +39,7 @@ export class PostComponent implements OnInit {
       },
       complete: () => {
         this.loading = false;
-      }
+      },
     });
   }
 
@@ -59,7 +56,7 @@ export class PostComponent implements OnInit {
       },
       complete: () => {
         this.loading = false;
-      }
+      },
     });
   }
 
@@ -73,7 +70,7 @@ export class PostComponent implements OnInit {
     this.loading = true;
     this.postService.editar(this.post.id, this.post).subscribe({
       next: (updatedPost) => {
-        const index = this.posts.findIndex(p => p.id === updatedPost.id);
+        const index = this.posts.findIndex((p) => p.id === updatedPost.id);
         if (index !== -1) {
           this.posts[index] = updatedPost;
         }
@@ -85,7 +82,7 @@ export class PostComponent implements OnInit {
       },
       complete: () => {
         this.loading = false;
-      }
+      },
     });
   }
 
@@ -93,7 +90,7 @@ export class PostComponent implements OnInit {
     this.loading = true;
     this.postService.remover(this.post.id).subscribe({
       next: () => {
-        const index = this.posts.findIndex(p => p.id === this.post.id);
+        const index = this.posts.findIndex((p) => p.id === this.post.id);
         if (index !== -1) {
           this.posts.splice(index, 1);
         }
@@ -105,7 +102,7 @@ export class PostComponent implements OnInit {
       },
       complete: () => {
         this.loading = false;
-      }
+      },
     });
   }
 

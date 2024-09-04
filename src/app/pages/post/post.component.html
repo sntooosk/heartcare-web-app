@@ -1,16 +1,18 @@
 <div>
-  <app-post-form-component 
-    [post]="post" 
-    [btnPublicar]="btnPublicar" 
-    (publicar)="publish()" 
-    (editar)="edit()" 
-    (remover)="remove()" 
-    (cancelar)="cancel()">
+  <app-post-form-component
+    [post]="post"
+    [btnPublicar]="btnPublicar"
+    (publicar)="publish()"
+    (editar)="edit()"
+    (remover)="remove()"
+    (cancelar)="cancel()"
+  >
   </app-post-form-component>
 
-  <app-post-list-component 
-    [posts]="posts" 
-    [loading]="loading" 
-    (selecionarPost)="selectPost($event)">
+  <app-post-list-component
+    [posts]="posts"
+    [loading]="loading"
+    (selecionarPost)="selectPost($event)"
+  >
   </app-post-list-component>
 </div>

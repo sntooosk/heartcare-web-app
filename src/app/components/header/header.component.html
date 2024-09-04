@@ -1,36 +1,57 @@
-<header class="flex justify-between items-center p-4 bg-gray-800 text-white shadow-md">
+<header
+  class="flex justify-between items-center p-4 bg-gray-800 text-white shadow-md"
+>
   <div class="cursor-pointer flex items-center" (click)="navigateTo('/home')">
     <img src="../../../assets/svg/logo.svg" alt="logo" class="w-24" />
   </div>
 
   <div class="relative">
-    <div class="ml-4 flex items-center cursor-pointer transition duration-150 hover:text-gray-300" (click)="toggleMenu()">
-      <mat-icon class="ml-2 transition-transform duration-200" [@menuIconAnimation]="isMenuOpen ? 'expanded' : 'collapsed'">
+    <div
+      class="ml-4 flex items-center cursor-pointer transition duration-150 hover:text-gray-300"
+      (click)="toggleMenu()"
+    >
+      <mat-icon
+        class="ml-2 transition-transform duration-200"
+        [@menuIconAnimation]="isMenuOpen ? 'expanded' : 'collapsed'"
+      >
         keyboard_arrow_down
       </mat-icon>
     </div>
 
-    <ul [@menuAnimation]="isMenuOpen ? 'expanded' : 'collapsed'"
-      class="absolute right-0 mt-2 w-56 bg-white text-black rounded-lg shadow-lg py-2 z-20">
-
-      <li class="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer transition duration-150" (click)="navigateTo('/profile')">
+    <ul
+      [@menuAnimation]="isMenuOpen ? 'expanded' : 'collapsed'"
+      class="absolute right-0 mt-2 w-56 bg-white text-black rounded-lg shadow-lg py-2 z-20"
+    >
+      <li
+        class="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer transition duration-150"
+        (click)="navigateTo('/profile')"
+      >
         <img class="w-10 h-10 rounded-full mr-3" [src]="photo" alt="avatar" />
         <div>
           <span class="text-lg font-medium">Olá, {{ name }}</span>
         </div>
       </li>
 
-      <li class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150" (click)="navigateTo('/home/posts')">
+      <li
+        class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150"
+        (click)="navigateTo('/home/posts')"
+      >
         <mat-icon class="mr-2 text-gray-600">article</mat-icon>
         <span class="text-sm font-medium">Publicações</span>
       </li>
 
-      <li class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150" (click)="navigateTo('/home/pressures')">
+      <li
+        class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150"
+        (click)="navigateTo('/home/pressures')"
+      >
         <mat-icon class="mr-2 text-gray-600">favorite</mat-icon>
         <span class="text-sm font-medium">Medições</span>
       </li>
 
-      <li class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer text-red-500 transition duration-150" (click)="logout()">
+      <li
+        class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer text-red-500 transition duration-150"
+        (click)="logout()"
+      >
         <mat-icon class="mr-2 text-red-500">exit_to_app</mat-icon>
         <span class="text-sm font-medium">Sair</span>
       </li>
