@@ -20,9 +20,10 @@ export class PostListComponent {
     this.selecionarPost.emit(index);
   }
 
-  formatarData(date: Date): string {
+  formatDate(date: Date | string): string {
     if (!date) return '';
-    return new Date(date).toLocaleDateString('pt-BR', {
+    const dateObject = typeof date === 'string' ? new Date(date) : date;
+    return dateObject.toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric'

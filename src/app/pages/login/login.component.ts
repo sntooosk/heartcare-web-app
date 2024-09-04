@@ -12,12 +12,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
-  disablePrimaryBtn: boolean = true;
+  loginForm: FormGroup;
+  disablePrimaryBtn: boolean;
 
   constructor(
     private authService: AuthService,
-    private toastService: ToastrService,
+    private toastr: ToastrService,
     private router: Router
   ) {
     this.loginForm = new FormGroup({
@@ -28,18 +28,27 @@ export class LoginComponent {
       ]),
     });
 
+    this.disablePrimaryBtn = !this.loginForm.valid;
+
     this.loginForm.valueChanges.subscribe(() => {
       this.disablePrimaryBtn = !this.loginForm.valid;
     });
   }
 
-  submit() {
+  submit(): void {
+    if (this.loginForm.invalid) {
+      this.toastr.error('Por favor, preencha todos os campos corretamente.');
+      return;
+    }
+
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe({
       next: () => {
         this.router.navigate(['/home']);
       },
+      error: () => {
+        this.toastr.error('Falha ao realizar login. Verifique suas credenciais.');
+      }
     });
   }
 }
-

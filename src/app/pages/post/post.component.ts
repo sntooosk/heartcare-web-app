@@ -16,97 +16,104 @@ import { PostListComponent } from '../../components/post-list-component/post-lis
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-
-  post = new Post();
+  post: Post = new Post();
   btnPublicar: boolean = true;
   tabela: boolean = true;
   loading: boolean = false;
   posts: Post[] = [];
 
   constructor(
-    private service: PostService,
-    private toastService: ToastrService
+    private postService: PostService,
+    private toastr: ToastrService
   ) {}
 
-  ngOnInit() {
-    this.selecionar();
+  ngOnInit(): void {
+    this.loadPosts();
   }
 
-  selecionar(): void {
+  loadPosts(): void {
     this.loading = true;
-    this.service.selecionar().subscribe({
-      next: retorno => {
-        this.posts = retorno;
-        this.loading = false;
+    this.postService.selecionar().subscribe({
+      next: (posts) => {
+        this.posts = posts;
       },
       error: () => {
+        this.toastr.error('Erro ao obter posts. Por favor, tente novamente.');
+      },
+      complete: () => {
         this.loading = false;
-        this.toastService.error('Erro ao obter posts. Por favor, tente novamente.');
       }
     });
   }
 
-  publicar(): void {
+  publish(): void {
     this.loading = true;
-    this.service.publicar(this.post).subscribe({
-      next: retorno => {
-        this.posts.push(retorno);
-        this.post = new Post();
-        this.loading = false;
-        this.toastService.success('Post Publicado com sucesso!');
+    this.postService.publicar(this.post).subscribe({
+      next: (post) => {
+        this.posts.push(post);
+        this.resetPost();
+        this.toastr.success('Post publicado com sucesso!');
       },
       error: () => {
+        this.toastr.error('Erro ao publicar o post.');
+      },
+      complete: () => {
         this.loading = false;
-        this.toastService.error('Erro ao publicar o post.');
       }
     });
   }
 
-  selecionarPost(posicao: number): void {
-    this.post = this.posts[posicao];
+  selectPost(index: number): void {
+    this.post = { ...this.posts[index] };
     this.btnPublicar = false;
     this.tabela = false;
   }
 
-  editar(): void {
+  edit(): void {
     this.loading = true;
-    this.service.editar(this.post.id, this.post).subscribe({
-      next: retorno => {
-        let posicao = this.posts.findIndex(obj => obj.id === retorno.id);
-        this.posts[posicao] = retorno;
-        this.post = new Post();
-        this.btnPublicar = true;
-        this.tabela = true;
-        this.loading = false;
-        this.toastService.success('Post alterado com sucesso!');
+    this.postService.editar(this.post.id, this.post).subscribe({
+      next: (updatedPost) => {
+        const index = this.posts.findIndex(p => p.id === updatedPost.id);
+        if (index !== -1) {
+          this.posts[index] = updatedPost;
+        }
+        this.resetPost();
+        this.toastr.success('Post alterado com sucesso!');
       },
       error: () => {
+        this.toastr.error('Erro ao alterar o post.');
+      },
+      complete: () => {
         this.loading = false;
-        this.toastService.error('Erro ao alterar o post.');
       }
     });
   }
 
-  remover(): void {
+  remove(): void {
     this.loading = true;
-    this.service.remover(this.post.id).subscribe({
+    this.postService.remover(this.post.id).subscribe({
       next: () => {
-        let posicao = this.posts.findIndex(obj => obj.id === this.post.id);
-        this.posts.splice(posicao, 1);
-        this.post = new Post();
-        this.btnPublicar = true;
-        this.tabela = true;
-        this.loading = false;
-        this.toastService.success('Post removido com sucesso!');
+        const index = this.posts.findIndex(p => p.id === this.post.id);
+        if (index !== -1) {
+          this.posts.splice(index, 1);
+        }
+        this.resetPost();
+        this.toastr.success('Post removido com sucesso!');
       },
       error: () => {
+        this.toastr.error('Erro ao remover o post.');
+      },
+      complete: () => {
         this.loading = false;
-        this.toastService.error('Erro ao remover o post.');
       }
     });
   }
 
-  cancelar(): void {
+  cancel(): void {
+    this.resetPost();
+  }
+
+  private resetPost(): void {
     this.post = new Post();
     this.btnPublicar = true;
     this.tabela = true;

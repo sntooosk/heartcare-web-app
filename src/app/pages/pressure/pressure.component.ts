@@ -16,33 +16,35 @@ import { UserPressureComponent } from "../../components/user-pressure/user-press
   styleUrls: ['./pressure.component.scss']
 })
 export class PressureComponent implements OnInit {
-
-  pressure = new Pressure();
+  pressure: Pressure = new Pressure();
   pressures: Pressure[] = [];
   userNames: string[] = [];
   selectedUser: string = '';
   loading: boolean = false;
 
   constructor(
-    private service: PressureService,
-    private toastService: ToastrService
+    private pressureService: PressureService,
+    private toastr: ToastrService
   ) { }
 
-  ngOnInit() {
-    this.selecionar();
+  ngOnInit(): void {
+    this.loadPressures();
   }
 
-  selecionar(): void {
+  loadPressures(): void {
     this.loading = true;
-    this.service.selecionar()
-      .subscribe(retorno => {
-        this.pressures = retorno.sort((a, b) => a.id - b.id);
-        this.extractUserNames();
-        this.loading = false;
-      },
-      error => {
-        this.toastService.error('Erro ao obter pressão. Por favor, tente novamente.');
-        this.loading = false; // Desativa o carregamento em caso de erro
+    this.pressureService.selecionar()
+      .subscribe({
+        next: (pressures) => {
+          this.pressures = pressures.sort((a, b) => a.id - b.id);
+          this.extractUserNames();
+        },
+        error: () => {
+          this.toastr.error('Erro ao obter pressão. Por favor, tente novamente.');
+        },
+        complete: () => {
+          this.loading = false;
+        }
       });
   }
 
@@ -55,8 +57,7 @@ export class PressureComponent implements OnInit {
     this.userNames = Array.from(userNameSet);
   }
 
-  selectUser(userName: string) {
+  selectUser(userName: string): void {
     this.selectedUser = userName;
   }
-
 }

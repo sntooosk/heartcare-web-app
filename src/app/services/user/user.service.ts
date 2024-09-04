@@ -8,10 +8,12 @@ import { User } from '../../models/User';
   providedIn: 'root'
 })
 export class UserService {
-
   private baseUrl: string = 'https://heartcare-backend.onrender.com/api/v1/users/';
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
 
   private getAuthHeaders(): HttpHeaders {
     const token = this.authService.getToken();

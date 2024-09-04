@@ -4,7 +4,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div *ngFor="let c of getUserPressures(selectedUser); index as i" class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-200 p-6 border border-gray-200">
       <div class="border-b border-gray-200 pb-4 mb-4">
-        <p class="text-sm text-gray-500 font-medium">Data: {{ formatDateTime(c.date) }}</p>
+        <p class="text-sm text-gray-500 font-medium">Data: {{ formatDate(c.date) }}</p>
       </div>
 
       <div class="flex justify-between items-center">

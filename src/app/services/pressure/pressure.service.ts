@@ -8,20 +8,17 @@ import { Pressure } from '../../models/Pressure';
   providedIn: 'root'
 })
 export class PressureService {
-
   private url: string = 'https://heartcare-backend.onrender.com/api/v1/pressure/';
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService,
+    private authService: AuthService
   ) { }
 
-  token: string = this.authService.getToken();
-
-
   private getAuthHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
     return new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     });
   }
 
