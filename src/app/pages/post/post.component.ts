@@ -60,8 +60,8 @@ export class PostComponent implements OnInit {
     });
   }
 
-  selectPost(index: number): void {
-    this.post = { ...this.posts[index] };
+  selectPost(post: Post): void {
+    this.post = { ...post };
     this.btnPublicar = false;
     this.tabela = false;
   }

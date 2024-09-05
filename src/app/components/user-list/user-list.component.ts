@@ -6,6 +6,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { CardLoadingComponent } from '../card-loading/card-loading.component';
 import { UserLoadingComponent } from '../user-loading/user-loading.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
@@ -16,6 +17,7 @@ import { UserLoadingComponent } from '../user-loading/user-loading.component';
     MatListItem,
     MatProgressBarModule,
     CommonModule,
+    FormsModule,
     CardLoadingComponent,
     UserLoadingComponent,
   ],
@@ -30,6 +32,16 @@ export class UserListComponent {
 
   skeletonLoading: any[] = new Array(4);
 
+  filterText: string = '';
+
+  get filteredUserNames(): string[] {
+    if (!this.filterText) {
+      return this.userNames;
+    }
+    return this.userNames.filter(user =>
+      user.toLowerCase().includes(this.filterText.toLowerCase())
+    );
+  }
   getUserPhoto(userName: string): string | undefined {
     const user = this.pressures.find(
       (p) => `${p.userName} ${p.userLastName}` === userName

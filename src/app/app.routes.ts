@@ -25,6 +25,6 @@ export const routes: Route[] = [
         component: PressureComponent,
         canActivate: [AuthGuard],
       },
-    ]
+    ],
   },
 ];

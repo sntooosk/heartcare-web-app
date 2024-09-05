@@ -14,10 +14,13 @@ import { formatDate } from '../../utils/date-utils';
 export class PostListComponent {
   @Input() posts: Post[] = [];
   @Input() loading: boolean = true;
-  @Output() selecionarPost = new EventEmitter<number>();
+  @Output() selecionarPost = new EventEmitter<Post>();
   skeletonLoading: any[] = new Array(6);
 
-  
+  get sortedPosts(): Post[] {
+    return this.posts.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }
+
   getFormattedDate(date: Date | string): string {
     return formatDate(date);
   }

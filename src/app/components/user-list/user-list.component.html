@@ -3,6 +3,13 @@
     Usuários
   </div>
 
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    placeholder="Filtrar usuários"
+    class="mb-4 p-2 rounded bg-gray-700 text-white placeholder-gray-400"
+  />
+
   <div *ngIf="loading" class="flex flex-col space-y-4">
     <ng-container *ngFor="let _ of skeletonLoading; index as i">
       <app-user-loading></app-user-loading>
@@ -11,7 +18,7 @@
 
   <div *ngIf="!loading" class="flex-1 overflow-y-auto">
     <div
-      *ngFor="let user of userNames"
+      *ngFor="let user of filteredUserNames"
       class="flex items-center p-3 hover:bg-gray-700 rounded-md cursor-pointer transition-colors duration-150 mb-2"
       (click)="selectUser.emit(user)"
     >
