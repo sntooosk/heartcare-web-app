@@ -1,0 +1,14 @@
+.sidebar {
+  height: 100%;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.sidebar-visible {
+  width: 17rem;
+}
+
+.sidebar-hidden {
+  width: 0;
+  padding: 0;
+}

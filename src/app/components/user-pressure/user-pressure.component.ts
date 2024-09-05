@@ -1,6 +1,7 @@
-import { CommonModule, DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pressure } from '../../models/Pressure';
+import { formatTime, formatDate } from '../../utils/date-utils';
 
 @Component({
   selector: 'app-user-pressure',
@@ -12,6 +13,9 @@ import { Pressure } from '../../models/Pressure';
 export class UserPressureComponent {
   @Input() pressures: Pressure[] = [];
   @Input() selectedUser: string = '';
+  @Output() toggleSidebar = new EventEmitter<void>();
+
+
 
   getUserPressures(userName: string): Pressure[] {
     return this.pressures.filter(
@@ -19,13 +23,12 @@ export class UserPressureComponent {
     );
   }
 
-  formatDate(date: Date | string): string {
-    if (!date) return '';
-    const dateObject = typeof date === 'string' ? new Date(date) : date;
-    return dateObject.toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
+  getFormattedDate(date: Date | string): string {
+    return formatDate(date);
   }
+
+  getFormattedTime(date: Date | string): string {
+    return formatTime(date);
+  }
+
 }

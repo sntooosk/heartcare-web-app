@@ -28,7 +28,7 @@ export class UserListComponent {
   @Input() loading: boolean = false;
   @Output() selectUser = new EventEmitter<string>();
 
-  placeholderArray: any[] = new Array(4);
+  skeletonLoading: any[] = new Array(4);
 
   getUserPhoto(userName: string): string | undefined {
     const user = this.pressures.find(
@@ -37,7 +37,4 @@ export class UserListComponent {
     return user?.userPhoto;
   }
 
-  onSelectUser(userName: string): void {
-    this.selectUser.emit(userName);
-  }
 }

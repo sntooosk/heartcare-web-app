@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { Pressure } from '../../models/Pressure';
 import { PressureService } from '../../services/pressure/pressure.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserListComponent } from '../../components/user-list/user-list.component';
 import { UserPressureComponent } from '../../components/user-pressure/user-pressure.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pressure',
   standalone: true,
-  imports: [UserListComponent, UserPressureComponent],
+  imports: [UserListComponent, UserPressureComponent, CommonModule],
   templateUrl: './pressure.component.html',
   styleUrls: ['./pressure.component.scss'],
 })
@@ -18,6 +19,7 @@ export class PressureComponent implements OnInit {
   userNames: string[] = [];
   selectedUser: string = '';
   loading: boolean = false;
+  isSidebarVisible: boolean = true;
 
   constructor(
     private pressureService: PressureService,
@@ -55,5 +57,10 @@ export class PressureComponent implements OnInit {
 
   selectUser(userName: string): void {
     this.selectedUser = userName;
+    this.toggleSidebar();
+  }
+
+  toggleSidebar(): void {
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 }
