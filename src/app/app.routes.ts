@@ -4,6 +4,7 @@ import { AuthGuard } from './services/auth/auth-guard.service';
 import { HomeComponent } from './pages/home/home.component';
 import { PostComponent } from './pages/post/post.component';
 import { PressureComponent } from './pages/pressure/pressure.component';
+import { MedicationComponent } from './pages/medication/medication.component';
 
 export const routes: Route[] = [
   {
@@ -23,6 +24,11 @@ export const routes: Route[] = [
       {
         path: 'pressures',
         component: PressureComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'medications',
+        component: MedicationComponent,
         canActivate: [AuthGuard],
       },
     ],

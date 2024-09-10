@@ -1,0 +1,20 @@
+<div (click)="toggleSidebar.emit()" *ngIf="selectedUser" class="w-full max-w-6xl mx-auto mt-6">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+      Histórico de Pressão Arterial
+    </h2>
+  
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div
+        *ngFor="let c of getUserPressures(selectedUser); index as i"
+        class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 p-4 border border-gray-200"
+      >
+        <div class="flex flex-col items-center">
+          <p class="text-sm font-medium text-gray-500 mb-2">Nome</p>
+          <p class="text-xl font-semibold text-blue-600 mb-2">{{ c.name }}</p>
+          <p class="text-sm font-medium text-gray-500 mb-2">Dosagem</p>
+          <p class="text-xl font-semibold text-red-600">{{ c.dosage }} mg</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

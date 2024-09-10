@@ -49,6 +49,14 @@
       </li>
 
       <li
+        class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150"
+        (click)="navigateTo('/home/medications')"
+      >
+        <mat-icon class="mr-2 text-gray-600">medication</mat-icon>
+        <span class="text-sm font-medium">Medicamentos</span>
+      </li>
+
+      <li
         class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer text-red-500 transition duration-150"
         (click)="logout()"
       >
