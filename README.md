@@ -77,10 +77,6 @@
 
 5. Abra um Pull Request para revisão.
 
-## Licença
-
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## Contato
 
 Juliano Cassimiro dos Santos - [LinkedIn](https://www.linkedin.com/in/sntooosk)
