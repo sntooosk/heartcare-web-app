@@ -3,34 +3,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../../models/User';
+import { httpGetAuth } from '../../utils/htppHeaders';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl: string =
-    'https://heartcare-backend.onrender.com/api/v1/users/';
+  private readonly url: string = 'https://heartcare-backend.onrender.com/api/v1/users/';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  private getAuthHeaders(): HttpHeaders {
-    const token = this.authService.getToken();
-    return new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-  }
-
-  private buildHttpOptions(): { headers: HttpHeaders } {
-    return {
-      headers: this.getAuthHeaders(),
-    };
-  }
-
   getUser(): Observable<User> {
     const userId = this.authService.getUserId();
-    return this.http.get<User>(
-      `${this.baseUrl}${userId}`,
-      this.buildHttpOptions()
-    );
+    const headers = httpGetAuth(this.authService.getToken());
+
+    return this.http.get<User>(`${this.url}${userId}`, { headers });
   }
 }

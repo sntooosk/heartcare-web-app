@@ -1,14 +1,10 @@
-<main
-  class="min-h-screen bg-gray-800 flex flex-col items-center justify-center p-6"
->
+<main class="min-h-screen bg-gray-800 flex flex-col items-center justify-center p-6">
   <section class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
     <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Gestão</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
       <div class="mb-6">
-        <label for="email" class="block text-gray-700 font-medium mb-1"
-          >Email</label
-        >
+        <label for="email" class="block text-gray-700 font-medium mb-1">Email</label>
         <div class="relative">
           <input
             formControlName="email"
@@ -17,19 +13,13 @@
             class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out"
           />
           <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-            <img
-              src="/assets/svg/email-icon.svg"
-              class="h-6 w-6"
-              alt="Email Icon"
-            />
+            <mat-icon class="text-gray-500">mail</mat-icon>
           </div>
         </div>
       </div>
 
       <div class="mb-6">
-        <label for="password" class="block text-gray-700 font-medium mb-1"
-          >Senha</label
-        >
+        <label for="password" class="block text-gray-700 font-medium mb-1">Senha</label>
         <div class="relative">
           <input
             formControlName="password"
@@ -38,11 +28,7 @@
             class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out"
           />
           <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-            <img
-              src="/assets/svg/password-icon.svg"
-              class="h-6 w-6"
-              alt="Password Icon"
-            />
+            <mat-icon class="text-gray-500">lock</mat-icon>
           </div>
         </div>
       </div>

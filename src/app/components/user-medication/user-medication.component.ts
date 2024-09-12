@@ -16,9 +16,9 @@ export class UserMedicationComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
 
 
-  getUserPressures(userName: string): Medication[] {
+  getUserMedications(): Medication[] {
     return this.medication.filter(
-      (p) => `${p.userName} ${p.userLastName}` === userName
+      m => `${m.userName} ${m.userLastName}` === this.selectedUser
     );
   }
 

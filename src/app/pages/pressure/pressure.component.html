@@ -5,26 +5,24 @@
       'sidebar-visible': isSidebarVisible,
       'sidebar-hidden': !isSidebarVisible
     }"
-    class="bg-gray-800 p-4 transition-width duration-300"
+    class="h-screen bg-gray-800 p-4 transition-width duration-300"
   >
     <app-user-list
       [userNames]="userNames"
-      [pressures]="pressures"
+      [object]="pressures"
       [loading]="loading"
       (selectUser)="selectUser($event)"
-    >
-    </app-user-list>
+    ></app-user-list>
   </div>
 
-  <div class="flex-grow p-4">
+  <div class="flex-grow p-4 overflow-y-auto">
     <div class="flex flex-col items-center mt-4">
       <app-user-pressure
         [pressures]="pressures"
         [selectedUser]="selectedUser"
         (toggleSidebar)="toggleSidebar()"
         class="w-full max-w-6xl mt-4"
-      >
-      </app-user-pressure>
+      ></app-user-pressure>
     </div>
   </div>
 </div>

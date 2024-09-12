@@ -18,7 +18,9 @@ export class PostListComponent {
   skeletonLoading: any[] = new Array(6);
 
   get sortedPosts(): Post[] {
-    return this.posts.slice().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return this.posts
+      .slice()
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   getFormattedDate(date: Date | string): string {

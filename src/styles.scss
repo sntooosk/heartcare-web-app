@@ -1,24 +1,11 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
 $heartcare-web-primary: mat.define-palette(mat.$indigo-palette);
 $heartcare-web-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
 $heartcare-web-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
 $heartcare-web-theme: mat.define-light-theme(
   (
     color: (
@@ -31,9 +18,6 @@ $heartcare-web-theme: mat.define-light-theme(
   )
 );
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($heartcare-web-theme);
 
 @import "ngx-toastr/toastr";
@@ -41,13 +25,13 @@ $heartcare-web-theme: mat.define-light-theme(
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Poppins, "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
 html,

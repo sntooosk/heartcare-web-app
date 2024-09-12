@@ -14,9 +14,9 @@ import { PostListComponent } from '../../components/post-list-component/post-lis
 })
 export class PostComponent implements OnInit {
   post: Post = new Post();
-  btnPublicar: boolean = true;
-  tabela: boolean = true;
-  loading: boolean = false;
+  btnPublicar = true;
+  tabela = true;
+  loading = false;
   posts: Post[] = [];
 
   constructor(
@@ -28,18 +28,13 @@ export class PostComponent implements OnInit {
     this.loadPosts();
   }
 
-  loadPosts(): void {
+  private loadPosts(): void {
     this.loading = true;
     this.postService.selecionar().subscribe({
-      next: (posts) => {
-        this.posts = posts;
-      },
-      error: () => {
-        this.toastr.error('Erro ao obter posts. Por favor, tente novamente.');
-      },
-      complete: () => {
-        this.loading = false;
-      },
+      next: (posts) => (this.posts = posts),
+      error: () =>
+        this.toastr.error('Erro ao obter posts. Por favor, tente novamente.'),
+      complete: () => (this.loading = false),
     });
   }
 
@@ -51,12 +46,8 @@ export class PostComponent implements OnInit {
         this.resetPost();
         this.toastr.success('Post publicado com sucesso!');
       },
-      error: () => {
-        this.toastr.error('Erro ao publicar o post.');
-      },
-      complete: () => {
-        this.loading = false;
-      },
+      error: () => this.toastr.error('Erro ao publicar o post.'),
+      complete: () => (this.loading = false),
     });
   }
 
@@ -71,18 +62,12 @@ export class PostComponent implements OnInit {
     this.postService.editar(this.post.id, this.post).subscribe({
       next: (updatedPost) => {
         const index = this.posts.findIndex((p) => p.id === updatedPost.id);
-        if (index !== -1) {
-          this.posts[index] = updatedPost;
-        }
+        if (index !== -1) this.posts[index] = updatedPost;
         this.resetPost();
         this.toastr.success('Post alterado com sucesso!');
       },
-      error: () => {
-        this.toastr.error('Erro ao alterar o post.');
-      },
-      complete: () => {
-        this.loading = false;
-      },
+      error: () => this.toastr.error('Erro ao alterar o post.'),
+      complete: () => (this.loading = false),
     });
   }
 
@@ -90,19 +75,12 @@ export class PostComponent implements OnInit {
     this.loading = true;
     this.postService.remover(this.post.id).subscribe({
       next: () => {
-        const index = this.posts.findIndex((p) => p.id === this.post.id);
-        if (index !== -1) {
-          this.posts.splice(index, 1);
-        }
+        this.posts = this.posts.filter((p) => p.id !== this.post.id);
         this.resetPost();
         this.toastr.success('Post removido com sucesso!');
       },
-      error: () => {
-        this.toastr.error('Erro ao remover o post.');
-      },
-      complete: () => {
-        this.loading = false;
-      },
+      error: () => this.toastr.error('Erro ao remover o post.'),
+      complete: () => (this.loading = false),
     });
   }
 
