@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,6 @@ import {
   trigger,
 } from '@angular/animations';
 import { MatIconModule } from '@angular/material/icon';
-import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-header',
@@ -55,32 +54,14 @@ import { UserService } from '../../services/user/user.service';
     ]),
   ],
 })
-export class HeaderComponent implements OnInit {
-  name: string = '';
-  photo: string = '';
+export class HeaderComponent {
   isMenuOpen: boolean = false;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
   ) {}
 
-  ngOnInit() {
-    this.getUserData();
-  }
-
-  getUserData() {
-    this.userService.getUser().subscribe({
-      next: (user) => {
-        this.name = user.name;
-        this.photo = user.photo;
-      },
-      error: (err) => {
-        console.error('Error fetching user data:', err);
-      },
-    });
-  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

@@ -23,16 +23,6 @@
       class="absolute right-0 mt-2 w-56 bg-white text-black rounded-lg shadow-lg py-2 z-20"
     >
       <li
-        class="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer transition duration-150"
-        (click)="navigateTo('/profile')"
-      >
-        <img class="w-10 h-10 rounded-full mr-3" [src]="photo" alt="avatar" />
-        <div>
-          <span class="text-lg font-medium">Olá, {{ name }}</span>
-        </div>
-      </li>
-
-      <li
         class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150"
         (click)="navigateTo('/home/posts')"
       >
@@ -45,7 +35,6 @@
         (click)="navigateTo('/home/pressures')"
       >
         <mat-icon class="mr-2 text-gray-600">favorite</mat-icon>
-        <!-- Ícone de coração -->
         <span class="text-sm font-medium">Medições</span>
       </li>
 
