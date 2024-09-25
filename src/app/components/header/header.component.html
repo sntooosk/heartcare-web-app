@@ -1,10 +1,12 @@
 <header
   class="flex justify-between items-center p-4 bg-gray-800 text-white shadow-md"
 >
+  <!-- Logo e navegação para home -->
   <div class="cursor-pointer flex items-center" (click)="navigateTo('/home')">
     <img src="../../../assets/svg/logo.svg" alt="logo" class="w-24" />
   </div>
 
+  <!-- Menu de navegação com ícones -->
   <div class="relative">
     <div
       class="ml-4 flex items-center cursor-pointer transition duration-150 hover:text-gray-300"
@@ -18,34 +20,39 @@
       </mat-icon>
     </div>
 
+    <!-- Menu dropdown -->
     <ul
       [@menuAnimation]="isMenuOpen ? 'expanded' : 'collapsed'"
       class="absolute right-0 mt-2 w-56 bg-white text-black rounded-lg shadow-lg py-2 z-20"
     >
+      <!-- Campanhas (ícone de coração) -->
       <li
         class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150"
         (click)="navigateTo('/home/posts')"
       >
-        <mat-icon class="mr-2 text-gray-600">article</mat-icon>
-        <span class="text-sm font-medium">Publicações</span>
+        <mat-icon class="mr-2 text-gray-600">favorite</mat-icon> <!-- Ícone de coração -->
+        <span class="text-sm font-medium">Campanhas</span>
       </li>
 
+      <!-- Medições (BPM) -->
       <li
         class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150"
         (click)="navigateTo('/home/pressures')"
       >
-        <mat-icon class="mr-2 text-gray-600">favorite</mat-icon>
+        <mat-icon class="mr-2 text-gray-600">monitor_heart</mat-icon> <!-- Ícone de monitoramento cardíaco -->
         <span class="text-sm font-medium">Medições</span>
       </li>
 
+      <!-- Medicamentos (ícone de remédio) -->
       <li
         class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer transition duration-150"
         (click)="navigateTo('/home/medications')"
       >
-        <mat-icon class="mr-2 text-gray-600">medication</mat-icon>
+        <mat-icon class="mr-2 text-gray-600">medication</mat-icon> <!-- Ícone de remédio -->
         <span class="text-sm font-medium">Medicamentos</span>
       </li>
 
+      <!-- Sair -->
       <li
         class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer text-red-500 transition duration-150"
         (click)="logout()"
